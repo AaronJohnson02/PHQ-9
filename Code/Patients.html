@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient History - PHQ-9</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Patient History</h1>
+    </header>
+
+    <main>
+        <div id="patientContainer"></div>
+        <button onclick="addPatient()">Add Patient</button>
+    </main>
+
+    <script>
+        function addPatient() {
+            var patientName = prompt("Enter patient name:");
+            if (patientName) {
+                createPatientCard(patientName);
+            }
+        }
+
+        function createPatientCard(patientName) {
+            var patientContainer = document.getElementById("patientContainer");
+            var card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = "<p><a href='" + patientName + ".html'>" + patientName + "</a></p>";
+            patientContainer.appendChild(card);
+            createPatientPage(patientName);
+        }
+
+        function createPatientPage(patientName) {
+            var patientPageContent = "<head><title>" + patientName + " - PHQ-9</title></head><body><h1>" + patientName + "</h1></body>";
+            var blob = new Blob([patientPageContent], { type: "text/html" });
+            var url = URL.createObjectURL(blob);
+
+            // Assuming a modern browser that supports opening a new tab
+            window.open(url, "_blank");
+        }
+    </script>
+
+</body>
+</html>
