@@ -8,19 +8,52 @@
     <div style="font-size: 32px; width: 263px; height: 23px; left: 0px; top: 0px; position: absolute; color: #874804; font-family: Inter; font-weight: 400; word-wrap: break-word">PHQ - 9</div>
     <div style="font-size: 32px; width: 463px; height: 23px; left: 190px; top: 100px; position: absolute; color: #874804; font-family: Inter; font-weight: 400; word-wrap: break-word">Add Patient Details</div>
   </div>
+
   <form action="/submit_patient_details" method="post" style="left: 600px; top: 300px;">
     <label for="patient_id">Patient ID:</label>
     <input type="text" id="patient_id" name="patient_id" placeholder="Enter Patient ID">
     <br><br>
+
     <label for="patient_name">Patient Name:</label>
     <input type="text" id="patient_name" name="patient_name" placeholder="Enter Patient Name">
     <br><br><br>
+
     <input type="submit" value="Submit">
 
-    
+    <div id="success-message" style="display: none;">
+      Patient Added Successfully
+    </div>
   </form>
+
+  <script>
+    const form = document.querySelector('form');
+    const successMessage = document.getElementById('success-message');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+
+      fetch('http://127.0.0.1/submit_patient_details', { // Replace 'localhost' with your WAMPServer hostname or IP address
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          successMessage.style.display = 'block';
+        } else {
+          // Handle error
+        }
+      })
+      .catch(error => {
+        // Handle error
+      });
+    });
+  </script>
 </body>
 </html>
+
 
 <style>
   form {
