@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Submit Patient Details</title>
+</head>
+<body>
+  <div style="width: 369px; height: 227px; position: relative">
+    <div style="font-size: 32px; width: 263px; height: 23px; left: 0px; top: 0px; position: absolute; color: #874804; font-family: Inter; font-weight: 400; word-wrap: break-word">PHQ - 9</div>
+    <div style="font-size: 32px; width: 463px; height: 23px; left: 190px; top: 100px; position: absolute; color: #874804; font-family: Inter; font-weight: 400; word-wrap: break-word">Add Patient Details</div>
+  </div>
+  <form action="/submit_patient_details" method="post" style="left: 600px; top: 300px;">
+    <label for="patient_id">Patient ID:</label>
+    <input type="text" id="patient_id" name="patient_id" placeholder="Enter Patient ID">
+    <br><br>
+    <label for="patient_name">Patient Name:</label>
+    <input type="text" id="patient_name" name="patient_name" placeholder="Enter Patient Name">
+    <br><br><br>
+    <input type="submit" value="Submit">
+
+    
+  </form>
+</body>
+</html>
+
+<style>
+  form {
+  margin: 0 auto;
+  width: 50%; /* Adjust the width as needed */
+}
+
+body {
+    background-image: url('back.jpeg');
+    font-family: sans-serif;
+    color: #874804;
+}
+
+input {
+  border-radius: 120px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  border-radius: 120px;
+  padding: 10px 20px;
+  background-color: #874804;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+
+</style>
