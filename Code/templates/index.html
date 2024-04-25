@@ -11,24 +11,30 @@
         <h1>PHQ - 9</h1>
         <nav>
             <ul>
-                <li><a href="Index.html">Home</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="Login.html">Login</a></li>
-                <li><a href="Register.html">Register</a></li>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li> 
             </ul>
         </nav>
     </header>
     <main>
-        <h1>Register</h1>
-        <form>
-            <label for="fname">Name:</label>
-            <input type="text" id="fname" name="name"><br>
-            <label for="fname">Email:</label>
-            <input type="text" id="fname" name="email"><br>
-            <label for="lname">Password:</label>
-            <input type="password" id="lname" name="password"> <br>
-            <input type="submit" value="Submit">
-          </form>
+        <h1>About Us</h1>
+        At PHQ - 9, we are dedicated to providing a user-friendly 
+        and accessible way for individuals to track their medical information. 
+        Our mission is to empower individuals to take control of their health 
+        and wellness journey by simplifying the process of storing and retrieving 
+        important medical data.
+
+        <br> <br>
+        Our team is made up of experienced healthcare professionals and web developers who 
+        understand the importance of accurate and secure medical record keeping. We are 
+        committed to providing a warm and fuzzy user experience that puts individuals at 
+        ease and helps them feel confident in managing their health.
+        <br><br>
+         Whether you're a patient looking for a convenient way to keep track of your medical history,
+         or a healthcare provider seeking an efficient way to collect and store patient data, 
+         PHQ - 9 is here to help. We are constantly striving to improve 
+         our platform and provide the best possible experience for our users.
     </main>
     <footer>
         <p>&copy; 2024 PHQ - 9 Website. All rights reserved.</p>
