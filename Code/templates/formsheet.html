@@ -22,7 +22,7 @@
         <option value="Michael">Michael</option>
         <option value="Frank">Frank</option>
       </select>
-      <form method="button">
+      <form>
         <table>
           <thead>
             <tr>
@@ -99,15 +99,83 @@
           </tbody>
         </table>
       
-        <input type="submit" value="Calculate">
+        <button type="button" id="calculateButton">Calculate</button>
       
         <div id="scoreCircle"></div>
       </form>
-      <script src="script.js"></script>
     </main>
     <footer>
         <p>&copy; 2024 PHQ - 9 Website. All rights reserved.</p>
     </footer>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          document.getElementById('calculateButton').addEventListener('click', function() {
+              console.log("Calculate button clicked"); // Check if the event listener is triggered
+
+              // Calculate the total PHQ-9 score
+              var score = calculateScore();
+
+              // Display the total PHQ-9 score in a colored circle
+              displayScore(score);
+          });
+      });
+
+      function calculateScore() {
+          var totalScore = 0;
+          var questions = document.querySelectorAll('input[type="radio"]:checked');
+
+          questions.forEach(function(question) {
+              totalScore += parseInt(question.value);
+          });
+
+          return totalScore;
+      }
+
+      function displayScore(score) {
+          var scoreElement = document.querySelector('#scoreCircle');
+          
+          var color;
+          if (score >= 0 && score <= 4) {
+              color = '#81BE83';
+          } else if (score >= 5 && score <= 9) {
+              color = '#ECEBBD';
+          } else if (score >= 10 && score <= 18) {
+              color = '#FEA948';
+          } else if (score >= 19 && score <= 27) {
+              color = '#B31B1B';
+          } else {
+              color = 'black';
+          }
+
+          scoreElement.style.backgroundColor = color;
+          scoreElement.style.width = '50px';
+          scoreElement.style.height = '50px';
+          scoreElement.style.borderRadius = '50%';
+          scoreElement.style.margin = '10px';
+          scoreElement.style.display = 'flex';
+          scoreElement.style.alignItems = 'center';
+          scoreElement.style.justifyContent = 'center';
+          
+          var textContainer = document.createElement('div');
+          textContainer.style.display = 'flex';
+          textContainer.style.alignItems = 'center';
+          textContainer.style.justifyContent = 'center';
+          textContainer.style.width = '100%';
+          textContainer.style.height = '100%';
+          
+          var spanElement = document.createElement('span');
+          spanElement.style.fontSize = '16px';
+          spanElement.style.color = 'white';
+          spanElement.textContent = score;
+
+          textContainer.appendChild(spanElement);
+          
+          scoreElement.innerHTML = '';
+          scoreElement.appendChild(textContainer);
+      }
+  </script>
 </body>
 </html>
 
