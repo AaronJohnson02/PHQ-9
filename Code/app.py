@@ -38,6 +38,7 @@ def form_sheet():
     return render_template('formsheet.html')
 
 
+# This is to allow users to register 
 @app.route('/register', methods=['POST'])
 def register():
     username = request.form['name']
@@ -55,5 +56,23 @@ def register():
 def logged_in():
     return "You are logged in!"
 
+@app.route('/patients', methods=['POST'])
+def patient_register():
+    name = request.form['pname']
+    age = request.form['page']
+    pid = request.form['pid']
+
+    with open('Code/Data/patient.csv', 'a', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow([pid, name, age])
+        return redirect(url_for('patients'))
+
+
+@app.route('/patients')
+def patients():
+    # Logic to fetch and render patients goes here
+    return render_template('patients.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
+
