@@ -113,14 +113,9 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
           document.getElementById('calculateButton').addEventListener('click', function() {
-              console.log("Calculate button clicked"); // Check if the event listener is triggered
-              
-              // Check if all questions have been answered
+              console.log("Calculate button clicked"); 
               if (validateAnswers()) {
-                  // Calculate the total PHQ-9 score
-                  var score = calculateScore();
-      
-                  // Display the total PHQ-9 score in a colored circle
+                  var score = calculateScore(){
                   displayScore(score);
               } else {
                   alert("Please answer all questions before calculating the score.");
