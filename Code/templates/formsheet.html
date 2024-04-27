@@ -113,26 +113,42 @@
       document.addEventListener('DOMContentLoaded', function() {
           document.getElementById('calculateButton').addEventListener('click', function() {
               console.log("Calculate button clicked"); // Check if the event listener is triggered
-
-              // Calculate the total PHQ-9 score
-              var score = calculateScore();
-
-              // Display the total PHQ-9 score in a colored circle
-              displayScore(score);
+              
+              // Check if all questions have been answered
+              if (validateAnswers()) {
+                  // Calculate the total PHQ-9 score
+                  var score = calculateScore();
+      
+                  // Display the total PHQ-9 score in a colored circle
+                  displayScore(score);
+              } else {
+                  alert("Please answer all questions before calculating the score.");
+              }
           });
       });
-
+  
+      function validateAnswers() {
+          var rows = document.querySelectorAll('tbody tr');
+          for (var i = 0; i < rows.length; i++) {
+              var inputs = rows[i].querySelectorAll('input[type="radio"]:checked');
+              if (inputs.length === 0) {
+                  return false;
+              }
+          }
+          return true;
+      }
+  
       function calculateScore() {
           var totalScore = 0;
           var questions = document.querySelectorAll('input[type="radio"]:checked');
-
+  
           questions.forEach(function(question) {
               totalScore += parseInt(question.value);
           });
-
+  
           return totalScore;
       }
-
+  
       function displayScore(score) {
           var scoreElement = document.querySelector('#scoreCircle');
           
@@ -148,7 +164,7 @@
           } else {
               color = 'black';
           }
-
+  
           scoreElement.style.backgroundColor = color;
           scoreElement.style.width = '50px';
           scoreElement.style.height = '50px';
@@ -169,13 +185,13 @@
           spanElement.style.fontSize = '16px';
           spanElement.style.color = 'white';
           spanElement.textContent = score;
-
+  
           textContainer.appendChild(spanElement);
           
           scoreElement.innerHTML = '';
           scoreElement.appendChild(textContainer);
       }
-  </script>
+  </script>  
 </body>
 </html>
 
