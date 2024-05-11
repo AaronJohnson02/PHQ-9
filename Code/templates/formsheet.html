@@ -11,19 +11,23 @@
         <h1>PHQ - 9</h1>
         <nav>
             <ul>
-              <li><a href="{{ url_for('login') }}">Logout</a></li>
-              <li><a href="{{ url_for('patients') }}">Add Patients</a></li>
+                <li><a href="{{ url_for('login') }}">Logout</a></li>
+                <li><a href="{{ url_for('patients') }}">Add Patients</a></li>
+                <li><a href="{{ url_for('form_sheet') }}">Forms</a></li>
+                <li><a href="{{ url_for('visualization') }}">Visualization</a></li>
             </ul>
         </nav>
     </header>
     <main>
-      <h1><centre>Patient Health Questionnaire (PHQ-9)</centre></h1>
-      <select name="Patient Name" id="patient_name">
-        <option value="John">John</option>
-        <option value="Michael">Michael</option>
-        <option value="Frank">Frank</option>
-      </select>
-      <form>
+        <h1><centre>Patient Health Questionnaire (PHQ-9)</centre></h1>
+        <form action="{{ url_for('save_score') }}" method="POST">
+            <select name="patient_name" id="patient_name">
+                {% for patient in patients %}
+                <option value="{{ patient }}">{{ patient }}</option>
+                {% endfor %}
+            </select>
+        </form><!-- Corrected the missing closing tag for the first form -->
+      <form action="{{ url_for('save_score') }}" method="POST">
         <table>
           <thead>
             <tr>
@@ -101,7 +105,7 @@
         </table>
       
         <button type="button" id="calculateButton">Calculate</button>
-      
+        <input type="hidden" id="hiddenScore" name="score" value="">
         <div id="scoreCircle"></div>
       </form>
     </main>
@@ -115,7 +119,7 @@
           document.getElementById('calculateButton').addEventListener('click', function() {
               console.log("Calculate button clicked"); 
               if (validateAnswers()) {
-                  var score = calculateScore(){
+                  var score = calculateScore();
                   displayScore(score);
               } else {
                   alert("Please answer all questions before calculating the score.");

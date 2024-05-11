@@ -10,10 +10,14 @@
     <header>
         <h1>PHQ - 9</h1>
         <nav>
-            <ul>
-                <li><a href="{{ url_for('login') }}">Logout</a></li>
-                <li><a href="{{ url_for('form_sheet') }}">Form</a></li>
-            </ul>
+            <nav>
+                <ul>
+                  <li><a href="{{ url_for('login') }}">Logout</a></li>
+                  <li><a href="{{ url_for('patients') }}">Add Patients</a></li>
+                  <li><a href="{{ url_for('form_sheet') }}">Forms</a></li>
+                  <li><a href="{{ url_for('visualization') }}">Visualization</a></li>
+                </ul>
+            </nav>
         </nav>
     </header>
     <main>
